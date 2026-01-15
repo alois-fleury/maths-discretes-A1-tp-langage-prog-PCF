@@ -21,28 +21,32 @@ public class Main {
      *                otherwise the program is entered at the console.
      *             - "-v" indicates verbose mode.
      */
-    static void main(String[] args) throws IOException {
-        InputStream is = null;
+    static void main(final String[] args) throws IOException {
+        // Manual input
+        if (args.length == 0 || (args.length == 1 && "-v".equals(args[0]))) {
+            final InputStream is = System.in;
+            final Term term = (Term) analyze(is);
+            IO.println("AST: " + term);
+            IO.println("===> "+ term.interp(new EmptyEnv()));
+        }
 
+        // File input
         for (String arg: args) {
             if (arg.charAt(0) != '-') {
-                is = new FileInputStream(arg);
+                final InputStream is = new FileInputStream(arg);
+                final Term term = (Term) analyze(is);
+                if (verbose) {
+                    IO.println("File path: " + arg);
+                    IO.println("AST: " + term);
+                }
+                IO.println("===> "+ term.interp(new EmptyEnv()));
+                IO.println("------------------------------------------------------\n");
             } else if ("-v".equals(arg)) {
                 verbose = true;
             } else {
                 throw new IllegalArgumentException();
             }
         }
-        if (is == null) {
-            is = System.in;
-
-            verbose = true;
-        }
-        Term term = (Term) analyze(is);
-        if (verbose) {
-            IO.println("AST: " + term);
-        }
-        IO.println("===> "+ term.interp(new EmptyEnv()));
     }
 
     public static AST analyze(InputStream is) throws IOException {
