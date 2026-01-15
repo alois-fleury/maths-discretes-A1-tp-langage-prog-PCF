@@ -1,3 +1,3 @@
 package interp;
 
-public interface Value {}
+public abstract class Value {}

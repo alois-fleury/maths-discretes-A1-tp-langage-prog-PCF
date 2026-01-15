@@ -18,12 +18,11 @@ public class BinOp extends Term {
         int v1 = ((IntVal) term1.interp(e)).value;
         int v2 = ((IntVal) term2.interp(e)).value;
 
-        int result = switch (this.op) {
+        return new IntVal(switch (op) {
             case PLUS -> v1 + v2;
             case MINUS -> v1 - v2;
             case TIMES -> v1 * v2;
             case DIVIDE -> v1 / v2;
-        };
-        return new IntVal(result);
+        });
     }
 }
