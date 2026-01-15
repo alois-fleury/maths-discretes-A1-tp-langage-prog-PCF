@@ -15,11 +15,14 @@ public class Cond extends Term {
 
     @Override
     public Value interp(Env e) {
-        int v = ((IntVal) test.interp(e)).value;
-        if (v == 0) {
-            return branchTrue.interp(e);
-        } else {
-            return branchFalse.interp(e);
+        Value test_value = test.interp(e);
+        if (test_value instanceof IntVal) {
+            if (((IntVal) test_value).value == 0) {
+                return branchTrue.interp(e);
+            } else {
+                return branchFalse.interp(e);
+            }
         }
+        throw new IllegalArgumentException();
     }
 }
