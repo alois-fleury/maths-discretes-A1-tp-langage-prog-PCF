@@ -15,12 +15,9 @@ public class Cond extends Term {
 
     @Override
     public Value interp(Env e) {
-        final Value value = test.interp(e); // evaluate test
-        if (value instanceof IntVal) { // check it is an integer
-            int t = ((IntVal) value).value();
-            return t == 0 ? branchFalse.interp(e) : branchTrue.interp(e);
-        } else {
-            throw new IllegalArgumentException("Cond: test must be an integer"); // raise an error
-        }
+        return switch (test.interp(e)) { // evaluate test
+            case IntVal v -> v.value() == 0 ? branchTrue.interp(e) : branchFalse.interp(e); // check it is an integer and unbox
+            default -> throw new IllegalArgumentException("Cond: test must be an integer"); // raise en error
+        };
     }
 }
