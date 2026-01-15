@@ -15,8 +15,8 @@ public class Cond extends Term {
 
     @Override
     public Value interp(Env e) {
-        IntVal v = (IntVal) test.interp(e);
-        if (v.value == 0) {
+        int v = ((IntVal) test.interp(e)).value;
+        if (v == 0) {
             return branchTrue.interp(e);
         } else {
             return branchFalse.interp(e);
