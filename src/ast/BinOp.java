@@ -1,6 +1,7 @@
 package ast;
 
 import interp.Env;
+import interp.IntVal;
 import interp.Value;
 
 public class BinOp extends Term {
@@ -14,8 +15,15 @@ public class BinOp extends Term {
 
     @Override
     public Value interp(Env e) {
-        // TODO : interpréter chacun des termes de manière récursive puis les combiner suivant l'opérateur.
+        final int v1 = ((IntVal) term1.interp(e)).value();
+        final int v2 = ((IntVal) term2.interp(e)).value();
 
-        return null;
+        final int result = switch (op) {
+            case PLUS -> v1 + v2;
+            case MINUS -> v1 - v2;
+            case TIMES -> v1 * v2;
+            case DIVIDE -> v1 / v2;
+        };
+        return new IntVal(result);
     }
 }
