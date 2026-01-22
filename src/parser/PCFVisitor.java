@@ -1,4 +1,4 @@
-// Generated from C:/Users/runem/Desktop/E/Scolaire/IMT/1A/maths_discretes/maths-discretes-A1-tp-langage-prog-PCF/src/parser/PCF.g4 by ANTLR 4.13.2
+// Generated from C:/Users/runem/Desktop/E/IMT/maths_dis/langages_de_programmation/PCF/src/parser/PCF.g4 by ANTLR 4.13.2
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -23,6 +23,13 @@ public interface PCFVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPar(PCFParser.ParContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code App}
+	 * labeled alternative in {@link PCFParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitApp(PCFParser.AppContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Cond}
 	 * labeled alternative in {@link PCFParser#term}.
@@ -58,4 +65,11 @@ public interface PCFVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBinOp(PCFParser.BinOpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Fun}
+	 * labeled alternative in {@link PCFParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFun(PCFParser.FunContext ctx);
 }

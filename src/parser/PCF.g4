@@ -6,10 +6,12 @@ program : term EOF ;
 term : LIT                                   # Lit
      | VAR                                   # Var
      | '(' term ')'                          # Par
+     | term term                             # App
      | term OP_1 term                        # BinOp
      | term OP_2 term                        # BinOp
      | 'ifz' term 'then' term 'else' term    # Cond
      | 'let' VAR '=' term 'in' term          # Let
+     | 'fun' VAR '->' term                   # Fun
      ;
 
 // règles lexicales

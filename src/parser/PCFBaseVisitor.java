@@ -1,4 +1,4 @@
-// Generated from C:/Users/runem/Desktop/E/Scolaire/IMT/1A/maths_discretes/maths-discretes-A1-tp-langage-prog-PCF/src/parser/PCF.g4 by ANTLR 4.13.2
+// Generated from C:/Users/runem/Desktop/E/IMT/maths_dis/langages_de_programmation/PCF/src/parser/PCF.g4 by ANTLR 4.13.2
 package parser;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -26,6 +26,13 @@ public class PCFBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PC
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitPar(PCFParser.ParContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitApp(PCFParser.AppContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -61,4 +68,11 @@ public class PCFBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PC
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitBinOp(PCFParser.BinOpContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFun(PCFParser.FunContext ctx) { return visitChildren(ctx); }
 }
